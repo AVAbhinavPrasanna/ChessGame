@@ -1,18 +1,26 @@
-import Chesspiece.Direction;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+
 
 
 public class King extends Chesspiece {
 	private int xpos;
 	private int ypos;
+	private Color color;
 
-	public King(int x, int y){
-		xpos =x;
-		ypos=y;
+	public King(int x, int y,Color g){
+	   xpos=x;
+	   ypos=y;
+	   color = g; 
 	}
 
 	@Override
-	public void take() {
-		// TODO Auto-generated method stub
+	public boolean beenClickedon(MouseEvent e) {
+		if(e.getX()==getxpos()&&e.getY()==getypos()){
+			return true;
+			
+		}
+		return false;
 
 	}
 
@@ -47,8 +55,19 @@ public class King extends Chesspiece {
 			if(d.equals(Direction.RIGHT)&&d2.equals(Direction.RIGHT)){
 				xpos=xpos+numtimes;
 			}
-			
+
 		}
 
+	}
+
+	@Override
+	public int getxpos() {
+		// TODO Auto-generated method stub
+		return xpos;
+	}
+	@Override
+	public int getypos() {
+		// TODO Auto-generated method stub
+		return ypos;
 	}
 }

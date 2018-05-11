@@ -1,3 +1,5 @@
+import java.awt.event.MouseEvent;
+
 
 public class Board {
    private Chesspiece[][] chessboard;
@@ -40,6 +42,16 @@ public class Board {
    }
    public int getColumns(){
 	   return columns;
+   }
+   public void redraw(MouseEvent e){
+	  for(int a =0; a<rows;a++){
+		  for(int k=0; k<columns;k++){
+			  if(chessboard[a][k].beenClickedon(e)){
+				  
+			  
+		  }
+	  }
+   }
    }
 }
 
