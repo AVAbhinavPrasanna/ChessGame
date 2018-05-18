@@ -71,6 +71,11 @@ public class Pawn extends Chesspiece {
 		// TODO Auto-generated method stub
 		return ypos;
 	}
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return color;
+	}
 }
 
 
