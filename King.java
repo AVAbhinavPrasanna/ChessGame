@@ -14,15 +14,6 @@ public class King extends Chesspiece {
 	   color = g; 
 	}
 
-	@Override
-	public boolean beenClickedon(MouseEvent e) {
-		if(e.getX()==getxpos()&&e.getY()==getypos()){
-			return true;
-			
-		}
-		return false;
-
-	}
 
 	@Override
 	public void move(int numtimes,Direction d,Direction d2) {
@@ -59,6 +50,11 @@ public class King extends Chesspiece {
 		}
 
 	}
+	public King[] getpossiblelocs() {
+		King[] locs = new King[8]; 
+		return locs;
+	}
+	
 
 	@Override
 	public int getxpos() {
