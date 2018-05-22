@@ -50,8 +50,21 @@ public class King extends Chesspiece {
 		}
 
 	}
-	public King[] getpossiblelocs() {
-		King[] locs = new King[8]; 
+	public King[] getpossiblelocs(int rows, int columns,Color g) {
+		King[] locs = new King[8];
+		int b=this.getxpos();
+		int c=this.getypos();
+			if((b+1!=rows&&c+1!=columns)||(b-1!=-1&&c-1!=-1)) {
+		     locs[0] =new King(b+1,c,g);
+		     locs[1]=new King(b+1,c+1,g);
+		     locs[2]=new King(b-1,c,g);
+		     locs[3]=new King(b-1,c-1,g);
+		     locs[4]=new King(b+1,c-1,g);
+		     locs[5]=new King(b-1,c+1,g);
+		     locs[6]=new King(b,c-1,g);
+		     locs[7]=new King(b,c+1,g);
+			}
+		
 		return locs;
 	}
 	
