@@ -82,9 +82,9 @@ public class Board {
 				
 				if(chessboard[a][k].beenClickedon(e)) {
 					Chesspiece b = chessboard[a][k];
-				
 					if(e2.getY()>b.getypos()&&e2.getX()==b.getxpos()) {
-						b.move(e.gg = color;etY()-b.getypos(), b.d("UP"), b.d("UP"));
+						if(e2.getY()-b.getypos()!=-1) {
+						b.move(e.getY()-b.getypos(), b.d("UP"), b.d("UP"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
 								blackpieceslost[c]=chessboard[b.getypos()][b.getxpos()];
@@ -102,7 +102,9 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()<b.getypos()&&e2.getX()==b.getypos()) {
+						if(b.getypos()-e2.getY()!=-1) {
 						b.move(b.getypos()-e2.getY(), b.d("DOWN"), b.d("DOWN"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
@@ -121,7 +123,9 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()==b.getypos()&&e2.getX()>b.getxpos()) {
+						if(e2.getX()-b.getxpos()!=-1) {
 						b.move(e2.getX()-b.getxpos(), b.d("RIGHT"), b.d("RIGHT"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
@@ -135,7 +139,9 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()==b.getypos()&&e2.getX()<b.getxpos()) {
+						if(b.getxpos()-e2.getX()!=-1){
 						b.move(b.getxpos()-e2.getX(), b.d("LEFT"), b.d("LEFT"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
@@ -149,8 +155,10 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()>b.getypos()&&e2.getX()<b.getxpos()) {
-						b.move(e.getY()-b.getypos(), b.d("LEFT"), b.d("UP"));
+						if(e2.getY()-b.getypos()!=-1) {
+						b.move(e2.getY()-b.getypos(), b.d("LEFT"), b.d("UP"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
 								blackpieceslost[c]=chessboard[b.getypos()][b.getxpos()];
@@ -162,9 +170,11 @@ public class Board {
 							}
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
+					}
 					}
 					else if(e2.getY()>b.getypos()&&e2.getX()>b.getxpos()) {
-						b.move(e.getY()-b.getypos(), b.d("RIGHT"), b.d("UP"));
+						if(e2.getY()-b.getypos()!=-1) {
+						b.move(e2.getY()-b.getypos(), b.d("RIGHT"), b.d("UP"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
 								blackpieceslost[c]=chessboard[b.getypos()][b.getxpos()];
@@ -177,7 +187,9 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()<b.getypos()&&e2.getX()>b.getxpos()) {
+						if(e2.getY()-b.getypos()!=-1){
 						b.move(b.getypos()-e2.getY(), b.d("RIGHT"), b.d("DOWN"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
@@ -191,7 +203,9 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 					else if(e2.getY()<b.getypos()&&e2.getX()<b.getxpos()) {
+						if(b.getxpos()-e2.getY()!=-1) {
 						b.move(b.getypos()-e2.getY(), b.d("LEFT"), b.d("DOWN"));
 						if(chessboard[b.getypos()][b.getxpos()]!=null) {
 							if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
@@ -205,12 +219,13 @@ public class Board {
 						}
 						chessboard[b.getypos()][b.getxpos()]=b;
 					}
+					}
 				}
 			}
 		}
 	}
 				
-			
+	
 	public void CPUmove(Chesspiece p,int x, int y) {
 	     Chesspiece b = null;
 	     int c=0;
@@ -268,7 +283,7 @@ public class Board {
 								}
 								else {
 									whitepieceslost[m]=chessboard[b.getypos()][b.getxpos()];
-									g = color;	m++;
+										m++;
 								}
 							}
 							chessboard[b.getypos()][b.getxpos()]=b;
@@ -292,7 +307,7 @@ public class Board {
 							if(chessboard[b.getypos()][b.getxpos()]!=null) {
 								if(chessboard[b.getypos()][b.getxpos()].getColor()==black) {
 									blackpieceslost[c]=chessboard[b.getypos()][b.getxpos()];
-									g = color;	c++;
+										c++;
 								}
 								else {
 									whitepieceslost[m]=chessboard[b.getypos()][b.getxpos()];
