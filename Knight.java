@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class Knight extends Chesspiece {
@@ -63,6 +64,71 @@ public class Knight extends Chesspiece {
 			} 
 		}
 
+	}
+	public  ArrayList<moves> getpossiblemoves(int xpos, int ypos,Board a,Color g) {
+		ArrayList<moves> moves= new ArrayList<moves>();
+		Chesspiece[][] board = a.getBoard();
+		Chesspiece k=null;
+		int o=0;
+		int b=0;
+		for(int u=0; u<board.length;u++) {
+			for(int i=0;i<board[0].length;i++) {
+				if(board[u][i] instanceof Knight&&board[u][i].getColor().equals(g)) {
+					k=board[u][i];
+				}
+			}
+		}
+		if(k.getxpos()+3!=board[0].length&&k.getypos()-1!=board.length) {
+			if(board[k.getypos()-1][k.getxpos()+3]==null&&(!board[k.getypos()-1][k.getxpos()+3].equals(g))) {
+				moves.add(new moves(k.getxpos()+3,k.getypos()-1));
+				
+				
+			}
+		}
+		else if(k.getxpos()+3!=board[0].length&&k.getypos()+1!=board.length) {
+			if(board[k.getypos()+1][k.getxpos()+3]==null&&(!board[k.getypos()+1][k.getxpos()+3].equals(g))) {
+				moves.add(new moves(k.getxpos()+3,k.getypos()+1));
+				
+				
+			}
+		}
+		else if(k.getxpos()-3!=board[0].length&&k.getypos()-1!=board.length) {
+			if(board[k.getypos()-1][k.getxpos()-3]==null&&(!board[k.getypos()-1][k.getxpos()-3].equals(g))) {
+				moves.add(new moves(k.getxpos()-3,k.getypos()-1));
+		        
+			}
+		}
+		else if(k.getxpos()-3!=board[0].length&&k.getypos()+1!=board.length) {
+			if(board[k.getypos()+1][k.getxpos()-3]==null&&(!board[k.getypos()+1][k.getxpos()-3].equals(g))) {
+				moves.add(new moves(k.getxpos()-3,k.getypos()+1));
+				
+			}
+			else if(k.getxpos()-1!=board[0].length&&k.getypos()-3!=board.length) {
+				if(board[k.getypos()-3][k.getxpos()-1]==null&&(!board[k.getypos()-3][k.getxpos()-1].equals(g))) {
+					moves.add(new moves(k.getxpos()-1,k.getypos()-3));
+					
+				}
+		}
+			else if(k.getxpos()-1!=board[0].length&&k.getypos()+3!=board.length) {
+				if(board[k.getypos()+3][k.getxpos()-1]==null&&(!board[k.getypos()+3][k.getxpos()-1].equals(g))) {
+					moves.add(new moves(k.getxpos()-1,k.getypos()+3));
+					
+				}
+		}
+			else if(k.getxpos()+1!=board[0].length&&k.getypos()+3!=board.length) {
+				if(board[k.getypos()+3][k.getxpos()+1]==null&&(!board[k.getypos()+3][k.getxpos()+1].equals(g))) {
+					moves.add(new moves(k.getxpos()+1,k.getypos()+3));
+					
+				}
+		}
+			else if(k.getxpos()+1!=board[0].length&&k.getypos()-3!=board.length) {
+				if(board[k.getypos()-3][k.getxpos()+1]==null&&(!board[k.getypos()-3][k.getxpos()+1].equals(g))) {
+					moves.add(new moves(k.getxpos()+1,k.getypos()-3));
+					
+				}
+		}
+	}
+		return moves;
 	}
 
 	@Override

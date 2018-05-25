@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 
@@ -50,6 +51,73 @@ public class Queen extends Chesspiece {
 		}
 
 		
+	}
+	public  ArrayList<moves> getpossiblemoves(Board a,Color g) {
+		ArrayList<moves> moves= new ArrayList<moves>();
+		Chesspiece[][] board = a.getBoard();
+		Chesspiece k=null;
+		int o=0;
+		int b=0;
+		for(int u=0; u<board.length;u++) {
+			for(int i=0;i<board[0].length;i++) {
+				if(board[u][i] instanceof Queen&&board[u][i].getColor().equals(g)) {
+					k=board[u][i];
+				}
+			}
+		}
+		while(k.getxpos()+o!=board[0].length&&k.getypos()+b!=board.length) {
+			if(board[k.getypos()+b][k.getxpos()+o]==null&&(!board[k.getypos()+b][k.getxpos()+o].equals(g))) {
+				moves.add(new moves(k.getxpos()+o,k.getypos()+b));
+				o++;
+				b++;
+			}
+		}
+		while(k.getxpos()-o!=board[0].length&&k.getypos()+b!=board.length) {
+			if(board[k.getypos()+b][k.getxpos()-o]==null&&(!board[k.getypos()+b][k.getxpos()-o].equals(g))) {
+				moves.add(new moves(k.getxpos()-o,k.getypos()+b));
+				o--;
+				b++;
+			}
+		}
+		while(k.getxpos()+o!=board[0].length&&k.getypos()-b!=board.length) {
+			if(board[k.getypos()-b][k.getxpos()+o]==null&&(!board[k.getypos()-b][k.getxpos()+o].equals(g))) {
+				moves.add(new moves(k.getxpos()+o,k.getypos()-b));
+				o++;
+				b--;
+			}
+		}
+		while(k.getxpos()-o!=board[0].length&&k.getypos()-b!=board.length) {
+			if(board[k.getypos()-b][k.getxpos()-o]==null&&(!board[k.getypos()-b][k.getxpos()-o].equals(g))) {
+				moves.add(new moves(k.getxpos()-o,k.getypos()-b));
+				o--;
+				b--;
+			}
+		}
+		while(k.getxpos()-o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+			if(board[k.getypos()][k.getxpos()-o]==null&&(!board[k.getypos()][k.getxpos()-o].equals(g))) {
+				moves.add(new moves(k.getxpos()-o,k.getypos()));
+				o--;
+			}
+		}
+		while(k.getxpos()+o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
+				moves.add(new moves(k.getxpos()+o,k.getypos()));
+				o++;
+			}
+		}
+		while((k.getxpos()!=board[0].length&&k.getxpos()!=-1)&&k.getypos()-b!=-1) {
+			if(board[k.getypos()-b][k.getxpos()]==null&&(!board[k.getypos()-b][k.getxpos()].equals(g))) {
+				moves.add(new moves(k.getxpos(),k.getypos()-b));
+				b--;
+			}
+		}
+		while((k.getxpos()!=board[0].length&&k.getxpos()!=-1)&&k.getypos()+b!=board.length) {
+			if(board[k.getypos()+b][k.getxpos()]==null&&(!board[k.getypos()+b][k.getxpos()].equals(g))) {
+				moves.add(new moves(k.getxpos(),k.getypos()+b));
+				b++;
+			}
+		}
+		return moves;
 	}
 
 	@Override

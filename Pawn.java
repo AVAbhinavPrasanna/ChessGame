@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 
@@ -60,6 +61,62 @@ public class Pawn extends Chesspiece {
 		}
 
 
+	}
+	public  ArrayList<moves> getpossiblemoves(Board a,Color g) {
+		ArrayList<moves> moves= new ArrayList<moves>();
+		Chesspiece[][] board = a.getBoard();
+		Chesspiece k=null;
+		int o=0;
+		for(int u=0; u<board.length;u++) {
+			for(int i=0;i<board[0].length;i++) {
+				if(board[u][i] instanceof Queen&&board[u][i].getColor().equals(g)) {
+					k=board[u][i];
+				}
+			}
+		}
+		if(k.getxpos()+1!=board[0].length&&k.getypos()+1!=board.length) {
+			if(board[k.getypos()+1][k.getxpos()+1]==null&&(!board[k.getypos()+1][k.getxpos()+1].equals(g))) {
+				moves.add(new moves(k.getxpos()+1,k.getypos()+1));
+			}
+		}
+		else if(k.getxpos()-1!=-1&&k.getypos()+1!=board.length) {
+			if(board[k.getypos()+1][k.getxpos()-1]==null&&(!board[k.getypos()+1][k.getxpos()-1].equals(g))) {
+				moves.add(new moves(k.getxpos()-1,k.getypos()+1));
+			}
+		}
+		else if(k.getxpos()+1!=board[0].length&&k.getypos()-1!=-1) {
+			if(board[k.getypos()-1][k.getxpos()+1]==null&&(!board[k.getypos()-1][k.getxpos()+1].equals(g))) {
+				moves.add(new moves(k.getxpos()+1,k.getypos()-1));
+			}
+		}
+		else if(k.getxpos()-1!=-1&&k.getypos()-1!=-1) {
+			if(board[k.getypos()-1][k.getxpos()-1]==null&&(!board[k.getypos()-1][k.getxpos()-1].equals(g))) {
+				moves.add(new moves(k.getxpos()-1,k.getypos()-1));
+			}
+		}
+		while(o<=2) {
+		 if(k.getxpos()+o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
+				moves.add(new moves(k.getxpos()+o,k.getypos()));
+				o++;
+			}
+		}
+	}
+		while(o<=2) {
+		 if(k.getxpos()-o!=-1&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
+				moves.add(new moves(k.getxpos()+o,k.getypos()));
+				o--;
+			}
+		}
+	}
+		while(k.getxpos()!=board[0].length&&k.getypos()-b!=board.length) {
+			if(board[k.getypos()-b][k.getxpos()]==null&&(!board[k.getypos()-b][k.getxpos()].equals(g))) {
+				moves.add(new moves(k.getxpos(),k.getypos()-b));
+				b--;
+			}
+		}
+		return moves;
 	}
 	@Override
 	public int getxpos() {

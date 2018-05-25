@@ -19,6 +19,14 @@ public class CPU {
 		}
 		g = color;
 	}
+	public ArrayList<moves> getallpossiblemoves(Board a, Color j){
+		Chesspiece[][] board = a.getBoard();
+		for(int r=0;r<board.length;r++) {
+			for(int c=0;c<board[0].length;c++) {
+				
+			}
+		}
+	}
 	public boolean withinBoard(Board a,Chesspiece k,int x, int y) {
 		Chesspiece[][] boardcheck = a.getBoard();
 		for(int b=0;b<boardcheck.length;b++) {
@@ -40,7 +48,7 @@ public class CPU {
 						else if(k instanceof Castle) {
 							if(((x!=boardcheck.length&&y!=boardcheck[0].length)&&(x!=-1&&y!=-1))&&(x-u==0||y-b==0)) {
 								return true;
-							}oves:
+							}
 
 						}
 						else if(k instanceof Knight) {
