@@ -79,52 +79,52 @@ public class King extends Chesspiece {
 				}
 			}
 		}
-		if(k.getxpos()+1!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+		if(k.getxpos()+1!=board.length&&(k.getypos()!=board[0].length&&k.getypos()!=-1)) {
 			if(board[k.getypos()][k.getxpos()+1]==null&&(!board[k.getypos()][k.getxpos()+1].equals(g))) {
-				moves.add(new moves(k.getxpos()+1,k.getypos()));
+				moves.add(new moves(k.getxpos()+1,k.getypos(),"King"));
 				
 				
 			}
 		}
-		else if((k.getxpos()!=board[0].length&&k.getxpos()!=-1)&&k.getypos()-1!=board.length) {
+		else if((k.getxpos()!=board.length&&k.getxpos()!=-1)&&k.getypos()-1!=-1) {
 			if(board[k.getypos()-1][k.getxpos()]==null&&(!board[k.getypos()-1][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()-1));
+				moves.add(new moves(k.getxpos(),k.getypos()-1,"King"));
 				
 				
 			}
 		}
-		else if((k.getxpos()!=board[0].length&&k.getxpos()!=-1)&&k.getypos()+1!=board.length) {
+		else if((k.getxpos()!=board.length&&k.getxpos()!=-1)&&k.getypos()+1!=board[0].length) {
 			if(board[k.getypos()+1][k.getxpos()]==null&&(!board[k.getypos()+1][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()+1));
+				moves.add(new moves(k.getxpos(),k.getypos()+1,"King"));
 		        
 			}
 		}
-		else if(k.getxpos()-1!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+		else if(k.getxpos()-1!=-1&&(k.getypos()!=board[0].length&&k.getypos()!=-1)) {
 			if(board[k.getypos()][k.getxpos()-1]==null&&(!board[k.getypos()][k.getxpos()-1].equals(g))) {
-				moves.add(new moves(k.getxpos()-1,k.getypos()));
+				moves.add(new moves(k.getxpos()-1,k.getypos(),"King"));
 				
 			}
-			else if(k.getxpos()-1!=board[0].length&&k.getypos()-1!=board.length) {
+			else if(k.getxpos()-1!=-1&&k.getypos()-1!=-1) {
 				if(board[k.getypos()-1][k.getxpos()-1]==null&&(!board[k.getypos()-1][k.getxpos()-1].equals(g))) {
-					moves.add(new moves(k.getxpos()-1,k.getypos()-1));
+					moves.add(new moves(k.getxpos()-1,k.getypos()-1,"King"));
 					
 				}
 		}
-			else if(k.getxpos()-1!=board[0].length&&k.getypos()+1!=board.length) {
+			else if(k.getxpos()-1!=-1&&k.getypos()+1!=board[0].length) {
 				if(board[k.getypos()+1][k.getxpos()-1]==null&&(!board[k.getypos()+1][k.getxpos()-1].equals(g))) {
-					moves.add(new moves(k.getxpos()-1,k.getypos()+1));
+					moves.add(new moves(k.getxpos()-1,k.getypos()+1,"King"));
 					
 				}
 		}
-			else if(k.getxpos()+1!=board[0].length&&k.getypos()+1!=board.length) {
+			else if(k.getxpos()+1!=board.length&&k.getypos()+1!=board[0].length) {
 				if(board[k.getypos()+1][k.getxpos()+1]==null&&(!board[k.getypos()+1][k.getxpos()+1].equals(g))) {
-					moves.add(new moves(k.getxpos()+1,k.getypos()+1));
+					moves.add(new moves(k.getxpos()+1,k.getypos()+1,"King"));
 					
 				}
 		}
-			else if(k.getxpos()+1!=board[0].length&&k.getypos()-1!=board.length) {
+			else if(k.getxpos()+1!=board.length&&k.getypos()-1!=board[0].length) {
 				if(board[k.getypos()-1][k.getxpos()+1]==null&&(!board[k.getypos()-1][k.getxpos()+1].equals(g))) {
-					moves.add(new moves(k.getxpos()+1,k.getypos()-1));
+					moves.add(new moves(k.getxpos()+1,k.getypos()-1,"King"));
 					
 				}
 		}

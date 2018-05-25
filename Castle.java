@@ -38,29 +38,29 @@ public class Castle extends Chesspiece {
 				}
 			}
 		}
-		while(k.getxpos()+o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+		while(k.getxpos()+o!=board.length&&(k.getypos()!=board[0].length&&k.getypos()!=-1)) {
 			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
-				moves.add(new moves(k.getxpos()+o,k.getypos()));
+				moves.add(new moves(k.getxpos()+o,k.getypos(),"Castle"));
 				o++;
 				
 			}
 		}
-		while(k.getxpos()-o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
+		while(k.getxpos()-o!=-1&&(k.getypos()!=board[0].length&&k.getypos()!=-1)) {
 			if(board[k.getypos()][k.getxpos()-o]==null&&(!board[k.getypos()][k.getxpos()-o].equals(g))) {
-				moves.add(new moves(k.getxpos()-o,k.getypos()));
+				moves.add(new moves(k.getxpos()-o,k.getypos(),"Castle"));
 				o--;
 				
 			}
 		}
-		while((k.getxpos()!=board[0].length&&k.getxpos()!=-1)&&k.getypos()+b!=board.length) {
+		while((k.getxpos()!=board.length&&k.getxpos()!=-1)&&k.getypos()+b!=board[0].length) {
 			if(board[k.getypos()+b][k.getxpos()]==null&&(!board[k.getypos()+b][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()+b));
+				moves.add(new moves(k.getxpos(),k.getypos()+b,"Castle"));
 		        b++;
 			}
 		}
-		while(k.getxpos()!=board[0].length&&k.getypos()-b!=board.length) {
+		while(k.getxpos()!=board.length&&k.getypos()-b!=board[0].length) {
 			if(board[k.getypos()-b][k.getxpos()]==null&&(!board[k.getypos()-b][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()-b));
+				moves.add(new moves(k.getxpos(),k.getypos()-b,"Castle"));
 				b--;
 			}
 		}

@@ -41,30 +41,30 @@ public class Bishop extends Chesspiece {
 				}
 			}
 		}
-		while(k.getxpos()+o!=board[0].length&&k.getypos()+b!=board.length) {
+		while(k.getxpos()+o!=board.length&&k.getypos()+b!=board[0].length) {
 			if(board[k.getypos()+b][k.getxpos()+o]==null&&(!board[k.getypos()+b][k.getxpos()+o].equals(g))) {
-				moves.add(new moves(k.getxpos()+o,k.getypos()+b));
+				moves.add(new moves(k.getxpos()+o,k.getypos()+b,"Bishop"));
 				o++;
 				b++;
 			}
 		}
-		while(k.getxpos()-o!=board[0].length&&k.getypos()+b!=board.length) {
+		while(k.getxpos()-o!=board.length&&k.getypos()+b!=board[0].length) {
 			if(board[k.getypos()+b][k.getxpos()-o]==null&&(!board[k.getypos()+b][k.getxpos()-o].equals(g))) {
-				moves.add(new moves(k.getxpos()-o,k.getypos()+b));
+				moves.add(new moves(k.getxpos()-o,k.getypos()+b,"Bishop"));
 				o--;
 				b++;
 			}
 		}
-		while(k.getxpos()+o!=board[0].length&&k.getypos()-b!=board.length) {
+		while(k.getxpos()+o!=board.length&&k.getypos()-b!=-1) {
 			if(board[k.getypos()-b][k.getxpos()+o]==null&&(!board[k.getypos()-b][k.getxpos()+o].equals(g))) {
-				moves.add(new moves(k.getxpos()+o,k.getypos()-b));
+				moves.add(new moves(k.getxpos()+o,k.getypos()-b,"Bishop"));
 				o++;
 				b--;
 			}
 		}
-		while(k.getxpos()-o!=board[0].length&&k.getypos()-b!=board.length) {
+		while(k.getxpos()-o!=-1&&k.getypos()-b!=-1) {
 			if(board[k.getypos()-b][k.getxpos()-o]==null&&(!board[k.getypos()-b][k.getxpos()-o].equals(g))) {
-				moves.add(new moves(k.getxpos()-o,k.getypos()-b));
+				moves.add(new moves(k.getxpos()-o,k.getypos()-b,"Bishop"));
 				o--;
 				b--;
 			}

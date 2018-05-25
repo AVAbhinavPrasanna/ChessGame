@@ -74,46 +74,46 @@ public class Pawn extends Chesspiece {
 				}
 			}
 		}
-		if(k.getxpos()+1!=board[0].length&&k.getypos()+1!=board.length) {
+		if(k.getxpos()+1!=board.length&&k.getypos()+1!=board[0].length) {
 			if(board[k.getypos()+1][k.getxpos()+1]==null&&(!board[k.getypos()+1][k.getxpos()+1].equals(g))) {
-				moves.add(new moves(k.getxpos()+1,k.getypos()+1));
+				moves.add(new moves(k.getxpos()+1,k.getypos()+1,"Pawn"));
 			}
 		}
-		else if(k.getxpos()-1!=-1&&k.getypos()+1!=board.length) {
+		else if(k.getxpos()-1!=-1&&k.getypos()+1!=board[0].length) {
 			if(board[k.getypos()+1][k.getxpos()-1]==null&&(!board[k.getypos()+1][k.getxpos()-1].equals(g))) {
-				moves.add(new moves(k.getxpos()-1,k.getypos()+1));
+				moves.add(new moves(k.getxpos()-1,k.getypos()+1,"Pawn"));
 			}
 		}
-		else if(k.getxpos()+1!=board[0].length&&k.getypos()-1!=-1) {
+		else if(k.getxpos()+1!=board.length&&k.getypos()-1!=-1) {
 			if(board[k.getypos()-1][k.getxpos()+1]==null&&(!board[k.getypos()-1][k.getxpos()+1].equals(g))) {
-				moves.add(new moves(k.getxpos()+1,k.getypos()-1));
+				moves.add(new moves(k.getxpos()+1,k.getypos()-1,"Pawn"));
 			}
 		}
 		else if(k.getxpos()-1!=-1&&k.getypos()-1!=-1) {
 			if(board[k.getypos()-1][k.getxpos()-1]==null&&(!board[k.getypos()-1][k.getxpos()-1].equals(g))) {
-				moves.add(new moves(k.getxpos()-1,k.getypos()-1));
+				moves.add(new moves(k.getxpos()-1,k.getypos()-1,"Pawn"));
 			}
 		}
 		while(o<=2) {
-		 if(k.getxpos()+o!=board[0].length&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
-			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
-				moves.add(new moves(k.getxpos()+o,k.getypos()));
+		 if(k.getypos()+o!=board.length&&(k.getxpos()!=board[0].length&&k.getxpos()!=-1)) {
+			if(board[k.getypos()+o][k.getxpos()]==null&&(!board[k.getypos()+o][k.getxpos()].equals(g))) {
+				moves.add(new moves(k.getxpos(),k.getypos()+o,"Pawn"));
 				o++;
 			}
 		}
 	}
 		while(o<=2) {
-		 if(k.getxpos()-o!=-1&&(k.getypos()!=board.length&&k.getypos()!=-1)) {
-			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()][k.getxpos()+o].equals(g))) {
-				moves.add(new moves(k.getxpos()+o,k.getypos()));
+		 if(k.getypos()-o!=-1&&(k.getxpos()!=board.length&&k.getxpos()!=-1)) {
+			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()+o][k.getxpos()].equals(g))) {
+				moves.add(new moves(k.getxpos(),k.getypos()+o,"Pawn"));
 				o--;
 			}
 		}
 	}
 		while(k.getxpos()!=board[0].length&&k.getypos()-b!=board.length) {
 			if(board[k.getypos()-b][k.getxpos()]==null&&(!board[k.getypos()-b][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()-b));
-				b--;
+				moves.add(new moves(k.getxpos(),k.getypos()-b,"Pawn"));
+				o--;
 			}
 		}
 		return moves;

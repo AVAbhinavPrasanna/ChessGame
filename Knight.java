@@ -65,7 +65,7 @@ public class Knight extends Chesspiece {
 		}
 
 	}
-	public  ArrayList<moves> getpossiblemoves(int xpos, int ypos,Board a,Color g) {
+	public  ArrayList<moves> getpossiblemoves(Board a,Color g) {
 		ArrayList<moves> moves= new ArrayList<moves>();
 		Chesspiece[][] board = a.getBoard();
 		Chesspiece k=null;
@@ -80,50 +80,50 @@ public class Knight extends Chesspiece {
 		}
 		if(k.getxpos()+3!=board[0].length&&k.getypos()-1!=board.length) {
 			if(board[k.getypos()-1][k.getxpos()+3]==null&&(!board[k.getypos()-1][k.getxpos()+3].equals(g))) {
-				moves.add(new moves(k.getxpos()+3,k.getypos()-1));
+				moves.add(new moves(k.getxpos()+3,k.getypos()-1,"Knight"));
 				
 				
 			}
 		}
 		else if(k.getxpos()+3!=board[0].length&&k.getypos()+1!=board.length) {
 			if(board[k.getypos()+1][k.getxpos()+3]==null&&(!board[k.getypos()+1][k.getxpos()+3].equals(g))) {
-				moves.add(new moves(k.getxpos()+3,k.getypos()+1));
+				moves.add(new moves(k.getxpos()+3,k.getypos()+1,"Knight"));
 				
 				
 			}
 		}
 		else if(k.getxpos()-3!=board[0].length&&k.getypos()-1!=board.length) {
 			if(board[k.getypos()-1][k.getxpos()-3]==null&&(!board[k.getypos()-1][k.getxpos()-3].equals(g))) {
-				moves.add(new moves(k.getxpos()-3,k.getypos()-1));
+				moves.add(new moves(k.getxpos()-3,k.getypos()-1,"Knight"));
 		        
 			}
 		}
 		else if(k.getxpos()-3!=board[0].length&&k.getypos()+1!=board.length) {
 			if(board[k.getypos()+1][k.getxpos()-3]==null&&(!board[k.getypos()+1][k.getxpos()-3].equals(g))) {
-				moves.add(new moves(k.getxpos()-3,k.getypos()+1));
+				moves.add(new moves(k.getxpos()-3,k.getypos()+1,"Knight"));
 				
 			}
 			else if(k.getxpos()-1!=board[0].length&&k.getypos()-3!=board.length) {
 				if(board[k.getypos()-3][k.getxpos()-1]==null&&(!board[k.getypos()-3][k.getxpos()-1].equals(g))) {
-					moves.add(new moves(k.getxpos()-1,k.getypos()-3));
+					moves.add(new moves(k.getxpos()-1,k.getypos()-3,"Knight"));
 					
 				}
 		}
 			else if(k.getxpos()-1!=board[0].length&&k.getypos()+3!=board.length) {
 				if(board[k.getypos()+3][k.getxpos()-1]==null&&(!board[k.getypos()+3][k.getxpos()-1].equals(g))) {
-					moves.add(new moves(k.getxpos()-1,k.getypos()+3));
+					moves.add(new moves(k.getxpos()-1,k.getypos()+3,"Knight"));
 					
 				}
 		}
 			else if(k.getxpos()+1!=board[0].length&&k.getypos()+3!=board.length) {
 				if(board[k.getypos()+3][k.getxpos()+1]==null&&(!board[k.getypos()+3][k.getxpos()+1].equals(g))) {
-					moves.add(new moves(k.getxpos()+1,k.getypos()+3));
+					moves.add(new moves(k.getxpos()+1,k.getypos()+3,"Knight"));
 					
 				}
 		}
 			else if(k.getxpos()+1!=board[0].length&&k.getypos()-3!=board.length) {
 				if(board[k.getypos()-3][k.getxpos()+1]==null&&(!board[k.getypos()-3][k.getxpos()+1].equals(g))) {
-					moves.add(new moves(k.getxpos()+1,k.getypos()-3));
+					moves.add(new moves(k.getxpos()+1,k.getypos()-3,"Knight"));
 					
 				}
 		}

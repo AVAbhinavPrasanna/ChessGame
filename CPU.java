@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class CPU {
 	enum Diff{Easy,Medium,Hard};
@@ -19,13 +20,44 @@ public class CPU {
 		}
 		g = color;
 	}
-	public ArrayList<moves> getallpossiblemoves(Board a, Color j){
+	public ArrayList<ArrayList> getallpossiblemoves(Board a, Color j){
 		Chesspiece[][] board = a.getBoard();
+		Pawn b= null;
+		Knight n = null;
+		Queen y = null;
+		King o = null;
+		Castle l = null;
+		Bishop p = null;
+		ArrayList<ArrayList> moves = new ArrayList<ArrayList>();
 		for(int r=0;r<board.length;r++) {
 			for(int c=0;c<board[0].length;c++) {
-				
+				if(board[r][c] instanceof Pawn&&board[r][c].equals(j)) {
+					b=(Pawn) board[r][c];
+					moves.add(b.getpossiblemoves(a, j));
+				}
+				else if(board[r][c] instanceof Knight && board[r][c].equals(j)) {
+					n= (Knight)board[r][c];
+					moves.add(n.getpossiblemoves(a, j));
+				}
+				else if(board[r][c] instanceof Queen && board[r][c].equals(j)) {
+					y = (Queen)board[r][c];
+					moves.add(y.getpossiblemoves(a, j));
+				}
+				else if(board[r][c] instanceof King && board[r][c].equals(j)) {
+					o = (King)board[r][c];
+					moves.add(o.getpossiblemoves(a, j));
+				}
+				else if(board[r][c] instanceof Castle && board[r][c].equals(j)) {
+					l=(Castle)board[r][c];
+					moves.add(l.getpossiblemoves(a, j));
+				}
+				else if(board[r][c] instanceof Bishop && board[r][c].equals(j)) {
+					p=(Bishop)board[r][c];
+					moves.add(p.getpossiblemoves(a, j));
+				}
 			}
 		}
+		return moves;
 	}
 	public boolean withinBoard(Board a,Chesspiece k,int x, int y) {
 		Chesspiece[][] boardcheck = a.getBoard();
@@ -87,20 +119,128 @@ public class CPU {
 
 		return false;
 	}
-   public void randomMove(Chesspiece k,Board a) {
-	   Chesspiece[][] moves = a.getBoard();
-	   int x =0;
-	   int y=0;
-	   if(d==Diff.Easy) {
-		   x = (int)(Math.random()*moves[0].length);
-		   y = (int)(Math.random()*moves.length);
-		   if(withinBoard(a,k,x,y)) {
-			   a.CPUmove(k,x,y);
-		   }
-	   }
-   }
-   
-    
+	public int calculateboardvalues(Board b, Color g) {
+		Chesspiece[][] board = b.getBoard();
+		int a = 0;
+		int whitepawns = 0;
+		int blackpawns=0;
+		int whiteknights =0;
+		int blackknights = 0;
+		int blackqueens = 0;
+		int whitequeens = 0;
+		int blackkings =0;
+		int whitekings =0;
+		int blackcastles=0;
+		int whitecastles = 0;
+		int blackbishops = 0;
+		int whitebishops = 0;
+		for(int r=0;r<board.length;r++) {
+			for(int c=0;c<board[0].length;c++) {
+				if(g.equals(white)) {
+					if(board[r][c] instanceof Pawn&&board[r][c].equals(g)) {
+						a+=10;
+						whitepawns++;
+					}
+					else if(board[r][c] instanceof Knight && board[r][c].equals(g)) {
+						a+=30;
+						whiteknights++;
+					}
+					else if(board[r][c] instanceof Queen && board[r][c].equals(g)) {
+						a+=90;
+						whitequeens++;
+					}
+					else if(board[r][c] instanceof King && board[r][c].equals(g)) {
+						a+=900;
+						whitekings++;
+					}
+					else if(board[r][c] instanceof Castle && board[r][c].equals(g)) {
+						a+=50;
+						whitecastles++;
+					}
+					else if(board[r][c] instanceof Bishop && board[r][c].equals(g)) {
+						a+=30;
+						whitebishops++;
+					}
+				}
+				else if(g.equals(black)) {
+					if(board[r][c] instanceof Pawn&&board[r][c].equals(g)) {
+						a-=10;
+						blackpawns++;
+					}
+					else if(board[r][c] instanceof Knight && board[r][c].equals(g)) {
+						a-=30;
+						blackknights++;
+					}
+					else if(board[r][c] instanceof Queen && board[r][c].equals(g)) {
+						a-=90;
+						blackqueens++;
+					}
+					else if(board[r][c] instanceof King && board[r][c].equals(g)) {
+						a-=900;
+						blackkings++;
+					}
+					else if(board[r][c] instanceof Castle && board[r][c].equals(g)) {
+						a-=50;
+						blackcastles++;
+					}
+					else if(board[r][c] instanceof Bishop && board[r][c].equals(g)) {
+						a-=30;
+						blackbishops++;
+					}
+				}
+			}
+		}
+		return a;
+	}
+	public void bestmove(Board a,Color j) {
+		Board b = a;
+		Chesspiece[][] board = b.getBoard();
+		ArrayList<ArrayList> moves = getallpossiblemoves(a, j);
+		ArrayList<moves> search = new ArrayList<moves>();
+		int i = 0;
+		moves k = null;
+		int best=0;
+		int current=1000;
+		moves bes = null;
+		for(int index=0; index<moves.size();index++) {
+		     search = moves.get(index);
+		     while(i<search.size()) {
+		    	 k=search.get(i);
+		    	 board[k.gety()][k.getx()]=null;
+		    	 if(j.equals(white)) {
+		    		 current = calculateboardvalues(a,black);
+		    		 if(current<best) {
+		    			 best = current;
+		    			 bes=search.get(i);
+		    		 }
+		    		
+		    	 }
+		    	 else if(j.equals(black)) {
+		    		 current = calculateboardvalues(a,white);
+		    		 if(current<best) {
+		    			 best = current;
+		    			 bes=search.get(i);
+		    		 }
+		     }
+		}
+		}
+		return bes;
+		
+	}
+	public void randomMove(Chesspiece k,Board a) {
+		Chesspiece[][] moves = a.getBoard();
+		int x =0;
+		int y=0;
+		if(d==Diff.Easy) {
+			x = (int)(Math.random()*moves[0].length);
+			y = (int)(Math.random()*moves.length);
+			if(withinBoard(a,k,x,y)) {
+				a.CPUmove(k,x,y);
+			}
+		}
+	}
+
+
 
 
 
