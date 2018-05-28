@@ -192,7 +192,7 @@ public class CPU {
 		}
 		return a;
 	}
-	public void bestmove(Board a,Color j) {
+	public moves bestmove(Board a,Color j) {
 		Board b = a;
 		Chesspiece[][] board = b.getBoard();
 		ArrayList<ArrayList> moves = getallpossiblemoves(a, j);
@@ -211,7 +211,7 @@ public class CPU {
 		    		 current = calculateboardvalues(a,black);
 		    		 if(current<best) {
 		    			 best = current;
-		    			 bes=search.get(i);
+		    			 bes=k;
 		    		 }
 		    		
 		    	 }
@@ -219,7 +219,7 @@ public class CPU {
 		    		 current = calculateboardvalues(a,white);
 		    		 if(current<best) {
 		    			 best = current;
-		    			 bes=search.get(i);
+		    			 bes=k;
 		    		 }
 		     }
 		}
@@ -227,15 +227,50 @@ public class CPU {
 		return bes;
 		
 	}
-	public void randomMove(Chesspiece k,Board a) {
+	public void mediummove(Board a,Color j) {
+		moves move = bestmove(a,j);
+		Chesspiece[][] board = a.getBoard();
+		Chesspiece k = null;
+		for(int i=0; i<board.length;i++) {
+			for(int m=0; m<board.length;m++) {
+				if(move.piece().equals("Pawn")&&board[i][m] instanceof Pawn &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				else if(move.piece().equals("Queen")&&board[i][m] instanceof Queen &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				else if(move.piece().equals("Knight")&&board[i][m] instanceof Knight &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				else if(move.piece().equals("Bishop")&&board[i][m] instanceof Bishop &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				else if(move.piece().equals("King")&&board[i][m] instanceof King &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				else if(move.piece().equals("Castle")&&board[i][m] instanceof Castle &&withinBoard(a,board[i][m],move.getx(),move.gety()) ) {
+					k=board[i][m];
+				}
+				
+			}
+		}
+		a.CPUmove(k, move.getx(), move.gety());
+	}
+	public void randomMove(Board a) {
 		Chesspiece[][] moves = a.getBoard();
 		int x =0;
 		int y=0;
+		int xpos = 0;
+		int ypos = 0;
+		Chesspiece k = null;
 		if(d==Diff.Easy) {
 			x = (int)(Math.random()*moves[0].length);
 			y = (int)(Math.random()*moves.length);
-			if(withinBoard(a,k,x,y)) {
-				a.CPUmove(k,x,y);
+			k= moves[y][x];
+			xpos = (int)(Math.random()*moves[0].length);
+			ypos = (int)(Math.random()*moves.length);
+			if(withinBoard(a,k,xpos,ypos)) {
+				a.CPUmove(k,xpos,ypos);
 			}
 		}
 	}

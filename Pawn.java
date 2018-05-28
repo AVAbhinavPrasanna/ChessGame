@@ -104,18 +104,13 @@ public class Pawn extends Chesspiece {
 	}
 		while(o<=2) {
 		 if(k.getypos()-o!=-1&&(k.getxpos()!=board.length&&k.getxpos()!=-1)) {
-			if(board[k.getypos()][k.getxpos()+o]==null&&(!board[k.getypos()+o][k.getxpos()].equals(g))) {
+			if(board[k.getypos()-o][k.getxpos()]==null&&(!board[k.getypos()-o][k.getxpos()].equals(g))) {
 				moves.add(new moves(k.getxpos(),k.getypos()+o,"Pawn"));
 				o--;
 			}
 		}
 	}
-		while(k.getxpos()!=board[0].length&&k.getypos()-b!=board.length) {
-			if(board[k.getypos()-b][k.getxpos()]==null&&(!board[k.getypos()-b][k.getxpos()].equals(g))) {
-				moves.add(new moves(k.getxpos(),k.getypos()-b,"Pawn"));
-				o--;
-			}
-		}
+		
 		return moves;
 	}
 	@Override
